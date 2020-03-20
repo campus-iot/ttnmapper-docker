@@ -119,7 +119,7 @@ docker logs -f $SERVICE
 VERSION=latest
 IMAGE=nodered/node-red
 SERVICE=ttnmapper-nodered
-docker run -d --name $SERVICE -d -e PMA_HOST=localhost -p 8080:80 $IMAGE:$VERSION
+docker run -d --name $SERVICE -d $IMAGE:$VERSION
 docker logs -f $SERVICE
 ```
 open http://localhost:3000
