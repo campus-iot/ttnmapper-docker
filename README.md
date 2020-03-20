@@ -12,12 +12,24 @@ The goal of this project is running a local instance of TTNMapper and NodeRED fl
 
 First [read the doc](https://github.com/ttnmapper/ttnmapper-web-v2/blob/master/docs/development.md)
 
+
 ```bash
 cd github/
 mkdir ttnmapper
 cd ttnmapper/
 git clone https://github.com/ttnmapper/ttnmapper-web-v2.git
-cd ttnmapper-web-v2
+```
+
+Terminal 1
+```bash
+cd github/ttnmapper/ttnmapper-web-v2
+./ttnm-testing-stack.sh init ~/temp/ttnm-testing-stack
+./ttnm-testing-stack.sh run ~/temp/ttnm-testing-stack
+```
+
+Terminal 2
+```bash
+cd github/ttnmapper/ttnmapper-web-v2
 yarn install
 yarn run start
 ```
