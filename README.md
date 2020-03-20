@@ -101,24 +101,24 @@ docker logs -f $SERVICE
 
 ```bash
 VERSION=latest
-IMAGE=ttnmapper-web-v2
-SERVICE=$IMAGE
+IMAGE=ttnmapper/ttnmapper-web-v2
+SERVICE=ttnmapper-web-v2
 docker run -d --hostname $SERVICE --name $SERVICE $IMAGE:$VERSION
 docker logs -f $SERVICE
 ```
 
 ```bash
 VERSION=latest
-IMAGE=ttnmapper-api-v2
-SERVICE=$IMAGE
+IMAGE=ttnmapper/ttnmapper-api-v2
+SERVICE=ttnmapper-api-v2
 docker run -d --hostname $SERVICE --name $SERVICE $IMAGE:$VERSION
 docker logs -f $SERVICE
 ```
 
 ```bash
 VERSION=latest
-IMAGE=ingress-api
-SERVICE=$IMAGE
+IMAGE=ttnmapper/ingress-api
+SERVICE=ingress-api
 docker run -d --hostname $SERVICE --name $SERVICE $IMAGE:$VERSION
 docker logs -f $SERVICE
 ```
