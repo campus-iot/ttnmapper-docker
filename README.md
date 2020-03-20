@@ -50,15 +50,15 @@ docker pull rabbitmq
 docker pull mysql
 ```
 
-[MySQL](https://hub.docker.com/_/mysql/) : optional
+[PHPMyAdmin](https://hub.docker.com/r/phpmyadmin/phpmyadmin) : optional
 ```bash
-docker pull mysql
+docker pull docker run --name myadmin -d -e PMA_HOST=dbhost -p 8080:80 phpmyadmin/phpmyadmin
+
 ```
 
-
-Nodered
+[Nodered](https://hub.docker.com/r/nodered/node-red)
 ```bash
-docker pull TBD
+docker pull nodered/node-red
 ```
 
 ## Running the containers
@@ -68,7 +68,8 @@ docker pull TBD
 VERSION=latest
 IMAGE=rabbit
 SERVICE=ttnmapper-$IMAGE
-docker run --hostname $SERVICE --name $SERVICE $IMAGE:$VERSION
+docker run -d --hostname $SERVICE --name $SERVICE $IMAGE:$VERSION
+docker logs -f $SERVICE
 ```
 
 [MySQL](https://hub.docker.com/_/mysql/)
@@ -77,7 +78,16 @@ VERSION=latest
 IMAGE=mysql
 SERVICE=ttnmapper-$IMAGE
 ENVIR="-e MYSQL_ROOT_PASSWORD=my-secret-pw"
-docker run $ENVIR --hostname $SERVICE --name $SERVICE $IMAGE:$VERSION
+docker run -d $ENVIR --hostname $SERVICE --name $SERVICE $IMAGE:$VERSION
+docker logs -f $SERVICE
+```
+
+```bash
+VERSION=latest
+IMAGE=phpmyadmin/phpmyadmin
+SERVICE=ttnmapper-myadmin
+docker run -d --name myadmin -d -e PMA_HOST=localhost -p 8080:80 $IMAGE
+docker logs -f $SERVICE
 ```
 
 ```bash
@@ -85,6 +95,7 @@ VERSION=latest
 IMAGE=ttnmapper-web-v2
 SERVICE=$IMAGE
 docker run -d --hostname $SERVICE --name $SERVICE $IMAGE:$VERSION
+docker logs -f $SERVICE
 ```
 
 ```bash
@@ -92,6 +103,7 @@ VERSION=latest
 IMAGE=ttnmapper-api-v2
 SERVICE=$IMAGE
 docker run -d --hostname $SERVICE --name $SERVICE $IMAGE:$VERSION
+docker logs -f $SERVICE
 ```
 
 ```bash
@@ -99,6 +111,30 @@ VERSION=latest
 IMAGE=ingress-api
 SERVICE=$IMAGE
 docker run -d --hostname $SERVICE --name $SERVICE $IMAGE:$VERSION
+docker logs -f $SERVICE
 ```
 
 
+```bash
+VERSION=latest
+IMAGE=nodered/node-red
+SERVICE=ttnmapper-nodered
+docker run -d --name $SERVICE -d -e PMA_HOST=localhost -p 8080:80 $IMAGE:$VERSION
+docker logs -f $SERVICE
+```
+open http://localhost:3000
+
+
+## Alternative: Running the containers composition
+
+```bash
+docker-compose up -d
+docker-compose logs -f
+```
+
+
+## Production
+
+TODO
+
+* Add NGinx and Let'Encrypt containers
