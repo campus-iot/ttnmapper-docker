@@ -5,6 +5,22 @@ TTNMapper is a dataviz service for the radio coverage of the public TTN LoRaWAN 
 
 The goal of this project is running a local instance of TTNMapper and NodeRED flow for collecting messages from Chirpstack private network.
 
+
+## Preliminary tests
+
+### ttnmapper-web-v2
+```bash
+cd github/
+mkdir ttnmapper
+cd ttnmapper/
+git clone https://github.com/ttnmapper/ttnmapper-web-v2.git
+cd ttnmapper-web-v2
+yarn install
+yarn run start
+```
+
+Open http://localhost:8010/?lat=45.18689240190709&long=5.769538879394531&zoom=11&
+
 ## Building of TTNMapper Docker Images
 
 The repositories are here https://github.com/ttnmapper
