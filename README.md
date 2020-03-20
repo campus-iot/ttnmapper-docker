@@ -45,10 +45,16 @@ docker images | grep ttnmapper
 docker pull rabbitmq
 ```
 
-Database (which one ?)
+[MySQL](https://hub.docker.com/_/mysql/)
 ```bash
-docker pull TBD
+docker pull mysql
 ```
+
+[MySQL](https://hub.docker.com/_/mysql/) : optional
+```bash
+docker pull mysql
+```
+
 
 Nodered
 ```bash
@@ -59,24 +65,40 @@ docker pull TBD
 
 [RabbitMQ](https://hub.docker.com/_/rabbitmq/)
 ```bash
-docker run -d --hostname ttnmapper-rabbit --name ttnmapper-rabbit rabbitmq
-docker ps
+VERSION=latest
+IMAGE=rabbit
+SERVICE=ttnmapper-$IMAGE
+docker run --hostname $SERVICE --name $SERVICE $IMAGE:$VERSION
+```
+
+[MySQL](https://hub.docker.com/_/mysql/)
+```bash
+VERSION=latest
+IMAGE=mysql
+SERVICE=ttnmapper-$IMAGE
+ENVIR="-e MYSQL_ROOT_PASSWORD=my-secret-pw"
+docker run $ENVIR --hostname $SERVICE --name $SERVICE $IMAGE:$VERSION
 ```
 
 ```bash
 VERSION=latest
-SERVICE=ttnmapper-web-v2
-docker run -d --hostname $SERVICE --name $SERVICE $SERVICE:$VERSION
+IMAGE=ttnmapper-web-v2
+SERVICE=$IMAGE
+docker run -d --hostname $SERVICE --name $SERVICE $IMAGE:$VERSION
 ```
 
 ```bash
-SERVICE=ttnmapper-api-v2
-docker run -d --hostname $SERVICE --name $SERVICE $SERVICE:$VERSION
+VERSION=latest
+IMAGE=ttnmapper-api-v2
+SERVICE=$IMAGE
+docker run -d --hostname $SERVICE --name $SERVICE $IMAGE:$VERSION
 ```
 
 ```bash
-SERVICE=ingress-api
-docker run -d --hostname $SERVICE --name $SERVICE $SERVICE:$VERSION
+VERSION=latest
+IMAGE=ingress-api
+SERVICE=$IMAGE
+docker run -d --hostname $SERVICE --name $SERVICE $IMAGE:$VERSION
 ```
 
 
