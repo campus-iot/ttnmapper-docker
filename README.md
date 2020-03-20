@@ -23,8 +23,6 @@ build() {
 }
 
 
-# TODO configure conf.json according to https://github.com/ttnmapper/mysql-insert-raw/blob/master/conf.json.template
-build "mysql-insert-raw" "latest"
 
 # TODO configure conf.json according to TBD
 build "ttnmapper-web-v2" "latest"
@@ -32,8 +30,19 @@ build "ttnmapper-web-v2" "latest"
 # TODO configure conf.json according to TBD
 build "ttnmapper-api-v2" "latest"
 
+# The following containers may be deprecated. You have to check that.
+
 # TODO configure conf.json according to https://github.com/ttnmapper/ingress-api#configuration
 build "ingress-api" "latest"
+
+# TODO configure conf.json according to https://github.com/ttnmapper/mysql-insert-raw/blob/master/conf.json.template
+build "mysql-insert-raw" "latest"
+
+build "mysql-insert-gridcell " "latest"
+
+build "gateway-update-current " "latest"
+
+build "mysql-insert-aggregated" "latest"
 
 docker images | grep ttnmapper
 ```
