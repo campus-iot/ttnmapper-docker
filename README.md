@@ -22,10 +22,15 @@ build() {
     docker images | grep ttnmapper/$REPO
 }
 
+
+# TODO configure conf.json according to https://github.com/ttnmapper/mysql-insert-raw/blob/master/conf.json.template
+build "mysql-insert-raw" "latest"
+
+# TODO configure conf.json according to TBD
 build "ttnmapper-web-v2" "latest"
 
+# TODO configure conf.json according to TBD
 build "ttnmapper-api-v2" "latest"
-
 
 # TODO configure conf.json according to https://github.com/ttnmapper/ingress-api#configuration
 build "ingress-api" "latest"
