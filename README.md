@@ -23,17 +23,21 @@ build() {
 }
 
 build "ttnmapper-web-v2" "latest"
+
 build "ttnmapper-api-v2" "latest"
+
+
+# TODO configure conf.json
 build "ingress-api" "latest"
 
 docker images | grep ttnmapper
 ```
 
-## Pulling the dependency
+## Pulling the dependencies
 
-RabbitMQ
+[RabbitMQ](https://hub.docker.com/_/rabbitmq/)
 ```bash
-docker pull TBD
+docker pull rabbitmq
 ```
 
 Database (which one ?)
@@ -46,10 +50,28 @@ Nodered
 docker pull TBD
 ```
 
-## Running the TTNMapper container
+## Running the containers
+
+[RabbitMQ](https://hub.docker.com/_/rabbitmq/)
+```bash
+docker run -d --hostname ttnmapper-rabbit --name ttnmapper-rabbit rabbitmq
+docker ps
+```
 
 ```bash
-TBD
+VERSION=latest
+SERVICE=ttnmapper-web-v2
+docker run -d --hostname $SERVICE --name $SERVICE $SERVICE:$VERSION
+```
+
+```bash
+SERVICE=ttnmapper-api-v2
+docker run -d --hostname $SERVICE --name $SERVICE $SERVICE:$VERSION
+```
+
+```bash
+SERVICE=ingress-api
+docker run -d --hostname $SERVICE --name $SERVICE $SERVICE:$VERSION
 ```
 
 
