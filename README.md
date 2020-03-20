@@ -9,6 +9,9 @@ The goal of this project is running a local instance of TTNMapper and NodeRED fl
 ## Preliminary tests
 
 ### ttnmapper-web-v2
+
+First [read the doc](https://github.com/ttnmapper/ttnmapper-web-v2/blob/master/docs/development.md)
+
 ```bash
 cd github/
 mkdir ttnmapper
