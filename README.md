@@ -27,7 +27,7 @@ build "ttnmapper-web-v2" "latest"
 build "ttnmapper-api-v2" "latest"
 
 
-# TODO configure conf.json
+# TODO configure conf.json according to https://github.com/ttnmapper/ingress-api#configuration
 build "ingress-api" "latest"
 
 docker images | grep ttnmapper
